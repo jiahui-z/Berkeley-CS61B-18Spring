@@ -1,5 +1,5 @@
 public class NBody {
-    public static final String backgroundImage = "images/starfield.jpg";
+    private static final String backgroundImage = "images/starfield.jpg";
 
     /**
      * Reading the radius of the universe given the input planets data.
