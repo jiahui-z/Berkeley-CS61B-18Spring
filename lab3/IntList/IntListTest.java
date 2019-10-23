@@ -66,8 +66,56 @@ public class IntListTest {
         assertEquals(IntList.of(1, 2, 3), A);
     }
 
+    @Test
+    public void testSize() {
+        IntList L = IntList.of(1, 2, 3);
+        int size = L.size();
+        assertEquals(3, size);
+    }
+
+    @Test
+    public void testRecursiveSize() {
+        IntList L = IntList.of(1, 2, 3, 4, 5, 6);
+        int recursiveSize = L.recursiveSize();
+        assertEquals(6, recursiveSize);
+    }
+
+    @Test
+    public void testGet() {
+        IntList L = IntList.of(1, 2, 3);
+        int secondItem = L.get(1);
+        int thirdItem = L.get(2);
+        assertEquals(2, secondItem);
+        assertEquals(3, thirdItem);
+    }
+
+    @Test
+    public void testRecursiveGet() {
+        IntList L = IntList.of(1, 2, 3, 4, 5, 6);
+        int fourthItem = L.recursiveGet(3);
+        int fifthItem = L.recursiveGet(4);
+        assertEquals(4, fourthItem);
+        assertEquals(5, fifthItem);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidIndex() {
+        IntList L = IntList.of(1, 2, 3);
+        L.get(100);
+    }
+
     /** If you're running this from the command line, you'll need
       * to add a main method. See ArithmeticTest.java for an
       * example. */
-
+    @Test
+    public void testReverse() {
+        IntList L = IntList.of(1, 2, 3, 4, 5, 6);
+        L = IntList.reverse(L);
+        IntList exp = IntList.of(6, 5, 4, 3, 2, 1);
+        IntList tamperedList = IntList.of(6, 4, 5, 1, 3, 2); // some random unexpected IntList
+        IntList nullList = null;
+        assertEquals(exp, L);
+        assertNotEquals(tamperedList, L);
+        assertNull(IntList.reverse(nullList));
+    }
 }

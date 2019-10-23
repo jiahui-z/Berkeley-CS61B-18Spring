@@ -50,7 +50,8 @@ public class IntList {
      * Returns the size of this IntList, recursive approach.
      */
     public int recursiveSize() {
-        if (this.rest == null) { // base case
+        // base case
+        if (this.rest == null) {
             return 1;
         }
         return 1 + this.rest.recursiveSize();
@@ -76,10 +77,28 @@ public class IntList {
     }
 
     public int recursiveGet(int i) {
-        if (i == 0) { // base case
+        // base case
+        if (i == 0) {
             return this.first;
         }
         return this.rest.recursiveGet(i - 1);
+    }
+
+    /**
+     * Returns the reverse of the given IntList.
+     * This method is destructive. If given null
+     * as an input, returns null.
+     * @param A the IntList to be reversed
+     */
+    public static IntList reverse(IntList A) {
+        if (A == null || A.rest == null) {
+            return A;
+        }
+        IntList next = A.rest;
+        IntList newHead = reverse(A.rest);
+        next.rest = A;
+        A.rest = null;
+        return newHead;
     }
 
     /**
