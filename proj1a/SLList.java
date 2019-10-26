@@ -6,8 +6,8 @@ public class SLList {
     *  2. saves memory (each IntNode no longer needs to keep
     *     track of how to access its enclosing SLList)  */
     private static class IntNode {
-        public int item;
-        public IntNode next;
+        private int item;
+        private IntNode next;
 
         public IntNode(int i, IntNode n) {
             item = i;

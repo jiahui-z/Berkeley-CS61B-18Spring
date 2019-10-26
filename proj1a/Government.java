@@ -8,6 +8,7 @@
     Guess before TRYING to compile, otherwise the compiler will spoil
     the problem.*/
 public class Government {
+
 	private int treasury = 5;
 
 	private void spend() {

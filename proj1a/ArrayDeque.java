@@ -17,15 +17,9 @@ public class ArrayDeque<T> {
 
     private void resize(int capacity) {
         T[] newItems = (T []) new Object[capacity];
-        if (nextFirst < nextLast && nextLast <= items.length - 1) {
-            System.arraycopy(items, nextFirst + 1, newItems, 0, nextLast - 1 - nextFirst);
-            nextLast = nextLast - 1 - nextFirst;
-            nextFirst = capacity - 1;
-        } else {
-            System.arraycopy(items, 0, newItems, 0, nextLast);
-            System.arraycopy(items, nextFirst + 1, newItems, size + nextLast, size - nextLast);
-            nextFirst = size + nextLast - 1;
-        }
+        System.arraycopy(items, 0, newItems, 0, size);
+        nextFirst = capacity - 1;
+        nextLast = size;
         items = newItems;
     }
 
@@ -162,18 +156,16 @@ public class ArrayDeque<T> {
 
     public static void main(String[] args) {
         ArrayDeque<Integer> deque = new ArrayDeque<>();
-        deque.addFirst(1);
-        deque.removeLast();
+        deque.addFirst(2);
         deque.printDeque();
-        deque.addLast(2);
-        deque.printDeque();
-        deque.addLast(3);
+        deque.removeFirst();
+        deque.addFirst(3);
         deque.printDeque();
         System.out.println(deque.size());
-        deque.addLast(4);
+        deque.addFirst(4);
         deque.printDeque();
         System.out.println(deque.size());
-        deque.addLast(5);
+        deque.addFirst(5);
         deque.printDeque();
         System.out.println(deque.size());
     }

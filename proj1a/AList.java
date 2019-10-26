@@ -57,4 +57,4 @@ public class AList {
         L.addLast(99);
         System.out.println(L.size());
     }
-} 
+}

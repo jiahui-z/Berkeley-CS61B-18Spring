@@ -168,11 +168,4 @@ public class LinkedListDeque<T> {
         }
         return getHelper(ptr.next, index - 1);
     }
-
-    public static void main(String[] args) {
-        LinkedListDeque<Integer> deque = new LinkedListDeque<>(1);
-        deque.addLast(2);
-        deque.addFirst(4);
-        System.out.println(deque.getRecursive(0));
-    }
 }
