@@ -17,7 +17,17 @@ public class ArrayDeque<T> {
 
     private void resize(int capacity) {
         T[] newItems = (T []) new Object[capacity];
-        System.arraycopy(items, 0, newItems, 0, size);
+        if (size == items.length) {
+            System.arraycopy(items, nextFirst + 1, newItems, 0, size - nextLast);
+            System.arraycopy(items, 0, newItems, size - nextLast, nextLast);
+        } else {
+            if (nextFirst < nextLast) {
+                System.arraycopy(items, nextFirst + 1, newItems, 0, nextLast - 1 - nextFirst);
+            } else {
+                System.arraycopy(items, nextFirst + 1, newItems, 0, size - nextLast);
+                System.arraycopy(items, 0, newItems, 0, nextLast);
+            }
+        }
         nextFirst = capacity - 1;
         nextLast = size;
         items = newItems;
@@ -152,21 +162,5 @@ public class ArrayDeque<T> {
                 return items[index - (items.length - 1 - nextFirst)];
             }
         }
-    }
-
-    public static void main(String[] args) {
-        ArrayDeque<Integer> deque = new ArrayDeque<>();
-        deque.addFirst(2);
-        deque.printDeque();
-        deque.removeFirst();
-        deque.addFirst(3);
-        deque.printDeque();
-        System.out.println(deque.size());
-        deque.addFirst(4);
-        deque.printDeque();
-        System.out.println(deque.size());
-        deque.addFirst(5);
-        deque.printDeque();
-        System.out.println(deque.size());
     }
 }

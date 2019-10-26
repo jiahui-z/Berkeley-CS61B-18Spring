@@ -26,17 +26,6 @@ public class LinkedListDeque<T> {
     }
 
     /**
-     * Creates the LinkedListDeque with one node.
-     * @param x
-     */
-    public LinkedListDeque(T x) {
-        sentinel = new ListNode(null, null, null);
-        sentinel.next = new ListNode(sentinel, x, sentinel);
-        sentinel.prev = sentinel.next;
-        size = 1;
-    }
-
-    /**
      * Adds an item of type T to the front of the deque,
      * takes constant time.
      * @param item the item to be added
