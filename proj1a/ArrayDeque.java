@@ -1,5 +1,6 @@
 public class ArrayDeque<T> {
 
+    private static final int DEFAULT_CAPACITY = 8;
     private T[] items;
     private int size;
     private int nextFirst;
@@ -9,7 +10,7 @@ public class ArrayDeque<T> {
      * Creates an empty linked list deque.
      */
     public ArrayDeque() {
-        items = (T []) new Object[8];
+        items = (T []) new Object[DEFAULT_CAPACITY];
         size = 0;
         nextFirst = 7;
         nextLast = 0;
@@ -18,8 +19,12 @@ public class ArrayDeque<T> {
     private void resize(int capacity) {
         T[] newItems = (T []) new Object[capacity];
         if (size == items.length) {
-            System.arraycopy(items, nextFirst + 1, newItems, 0, size - nextLast);
-            System.arraycopy(items, 0, newItems, size - nextLast, nextLast);
+            if (nextFirst == items.length - 1 || nextFirst == -1) {
+                System.arraycopy(items, 0, newItems, 0, size);
+            } else {
+                System.arraycopy(items, nextFirst + 1, newItems, 0, size - nextLast);
+                System.arraycopy(items, 0, newItems, size - nextLast, nextLast);
+            }
         } else {
             if (nextFirst < nextLast) {
                 System.arraycopy(items, nextFirst + 1, newItems, 0, nextLast - 1 - nextFirst);
@@ -57,7 +62,7 @@ public class ArrayDeque<T> {
      * @param item the item to be added
      */
     public void addLast(T item) {
-        if (nextLast == items.length - 1 && nextFirst < nextLast) {
+        if (nextLast == items.length - 1) {
             items[nextLast] = item;
             nextLast = 0;
         } else {

@@ -1,12 +1,12 @@
 /** A rather contrived exercise to test your understanding of when
-    nested classes may be made static. This is NOT an example of good
-    class design, even after you fix the bug.
+	nested classes may be made static. This is NOT an example of good
+	class design, even after you fix the bug.
 
-    The challenge with this file is to delete the keyword static the
-    minimum number of times so that the code compiles.
+	The challenge with this file is to delete the keyword static the
+	minimum number of times so that the code compiles.
 
-    Guess before TRYING to compile, otherwise the compiler will spoil
-    the problem.*/
+	Guess before TRYING to compile, otherwise the compiler will spoil
+	the problem.*/
 public class Government {
 
 	private int treasury = 5;
