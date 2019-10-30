@@ -84,9 +84,13 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         public BufferIterator() {
             ptr = 0;
         }
+
+        @Override
         public boolean hasNext() {
             return ptr != capacity - 1;
         }
+
+        @Override
         public T next() throws RuntimeException {
             if (ptr < capacity) {
                 T returnItem = rb[ptr++];
